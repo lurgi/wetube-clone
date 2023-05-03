@@ -1,6 +1,20 @@
+import multer from "multer";
+
 export const localsMiddleware = (req, res, next) => {
-  console.log(req.session);
   res.locals.loggedIn = Boolean(req.session.loggedIn);
   res.locals.loggedInUser = req.session.user;
   next();
 };
+
+export const avatarUpload = multer({
+  dest: "uploads/avatars/",
+  limits: {
+    fieldSize: 3000000,
+  },
+});
+export const videoUpload = multer({
+  dest: "uploads/videos/",
+  limits: {
+    fieldSize: 10000000,
+  },
+});

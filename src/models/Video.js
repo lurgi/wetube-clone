@@ -5,6 +5,7 @@ const videoSchema = new mongoose.Schema({
   description: { type: String, required: true, minLength: 5 },
   createdAt: { type: Date, required: true, default: Date.now },
   hashtags: [{ type: String }],
+  fileUrl: { type: String, required: true },
   meta: {
     views: { type: Number, default: 0 },
     rating: { type: Number, default: 0 },
