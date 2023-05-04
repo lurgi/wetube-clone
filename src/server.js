@@ -26,7 +26,8 @@ app.use(
 );
 
 app.use(localsMiddleware);
-app.use("/uploads", express.static("uploads"));
+app.use("/uploads", express.static("uploads")); //upload파일을 볼 수 있게 요청하는 것.
+app.use("/assets", express.static("assets"));
 
 app.use("/", rootRouter);
 app.use("/videos", videoRouter);
