@@ -1,5 +1,6 @@
 import User from "../models/User";
 import bcrypt from "bcrypt";
+import Video from "../models/Video";
 
 export const getJoin = (req, res) => {
   return res.render("join", { pageTitle: "Create Account" });
@@ -197,5 +198,17 @@ export const postChangePassword = async (req, res) => {
   return res.redirect("/login");
 };
 
-export const seeUser = (req, res) => res.send("SEE USER");
+export const seeUser = async (req, res) => {
+  const { id } = req.params;
+  const user = await User.findById(id);
+  const videos = await Video.find({ owner: user._id });
+  if (!user) {
+    return res.status(404).render("404");
+  }
+  return res.render("users/profile", {
+    pageTitle: `${user.name}의 Profile`,
+    user,
+    videos,
+  });
+};
 export const deleteUser = (req, res) => res.send("DELETE PROFILE");
