@@ -11,9 +11,9 @@ block content
         input(placeholder="cinfrim password" name="password2" type ="password" required)
         input(placeholder="location" name="location" type ="text" required)
         input(type="submit" value="JOIN")
-        hr
-        div 
-            span Already have an account?
-            a(href="/login") Log in &rarr;
+        include partials/social-login
+    div.auth-switch 
+        span Already have an account?
+        a(href="/login") Log in &rarr;
 
     
