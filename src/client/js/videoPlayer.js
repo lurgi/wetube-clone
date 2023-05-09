@@ -17,15 +17,25 @@ const handlePlayClick = (e) => {
   }
 };
 
-const handlePlay = () => (playBtn.innerText = "Pause");
-const handlePause = () => (playBtn.innerText = "Play");
+const handlePlay = () => {
+  playBtn.classList.remove("fa-play");
+  playBtn.classList.add("fa-pause");
+};
+const handlePause = () => {
+  playBtn.classList.remove("fa-pause");
+  playBtn.classList.add("fa-play");
+};
 let valueValue = 0.5;
 
 const handleMute = () => {
   if (video.muted) {
-    (video.muted = false), (muteBtn.innerText = "Mute");
+    video.muted = false;
+    muteBtn.classList.remove("fa-volume-xmark");
+    muteBtn.classList.add("fa-volume-up");
   } else {
-    (video.muted = true), (muteBtn.innerText = "Unmute");
+    video.muted = true;
+    muteBtn.classList.remove("fa-volume-up");
+    muteBtn.classList.add("fa-volume-xmark");
   }
   volume.value = video.muted ? "0" : valueValue;
 };
@@ -34,18 +44,20 @@ const handleVolumeChange = (event) => {
   const { value } = event.target;
   if (video.muted) {
     video.muted = false;
-    muteBtn.innerText = "Mute";
+    muteBtn.classList.remove("fa-volume-xmark");
+    muteBtn.classList.add("fa-volume-up");
   }
   if (value == 0) {
     video.muted = true;
-    muteBtn.innerText = "Unmute";
+    muteBtn.classList.remove("fa-volume-up");
+    muteBtn.classList.add("fa-volume-xmark");
   }
   valueValue = value;
   video.volume = valueValue;
 };
 
 const formatTime = (seconds) =>
-  new Date(seconds * 1000).toISOString().substring(11, 19);
+  new Date(seconds * 1000).toISOString().substring(14, 19);
 
 const handleLoadedMetadate = () => {
   totalTime.innerText = formatTime(video.duration);
@@ -98,12 +110,12 @@ const handleMouseMove = () => {
     controlsTimeout = null;
   }
   videoControls.classList.add("showing");
-  controlsMovementTimeout = setTimeout(hideControls, 2000);
+  controlsMovementTimeout = setTimeout(hideControls, 1500);
 };
 
 const handleMouseLeave = () => {
-  controlsTimeout = setTimeout(hideControls, 2000);
+  controlsTimeout = setTimeout(hideControls, 1500);
 };
 
-video.addEventListener("mousemove", handleMouseMove);
-video.addEventListener("mouseleave", handleMouseLeave);
+videocontainer.addEventListener("mousemove", handleMouseMove);
+videocontainer.addEventListener("mouseleave", handleMouseLeave);
