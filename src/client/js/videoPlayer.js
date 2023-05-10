@@ -119,3 +119,9 @@ const handleMouseLeave = () => {
 
 videocontainer.addEventListener("mousemove", handleMouseMove);
 videocontainer.addEventListener("mouseleave", handleMouseLeave);
+
+const handleEnded = () => {
+  const { id } = videocontainer.dataset;
+  fetch(`/api/videos/${id}/views`, { method: "POST" });
+};
+video.addEventListener("ended", handleEnded);

@@ -9,7 +9,6 @@ const init = async () => {
   stream = await navigator.mediaDevices.getUserMedia({
     audio: true,
     video: true,
-    audio: false,
   });
   video.srcObject = stream;
   video.play();
