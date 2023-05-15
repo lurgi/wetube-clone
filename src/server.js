@@ -7,6 +7,7 @@ import session from "express-session";
 import { localsMiddleware } from "./middlewares";
 import MongoStore from "connect-mongo";
 import apiRouter from "./routers/apiRouter";
+import flash from "express-flash";
 
 const app = express();
 const logger = morgan("dev");
@@ -26,6 +27,7 @@ app.use(
   })
 );
 
+app.use(flash());
 app.use(localsMiddleware);
 app.use("/uploads", express.static("uploads")); //upload파일을 볼 수 있게 요청하는 것.
 app.use("/assets", express.static("assets"));
